@@ -475,6 +475,19 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @keyframes pixelpedia-pixel-drift{0%{opacity:0;transform:translate3d(0,7px,0) rotate(45deg) scale(.55)}22%{opacity:.9}100%{opacity:0;transform:translate3d(-13px,-12px,0) rotate(135deg) scale(.25)}}
 @media(max-width:800px){.hero-pixel-spark{right:22px;top:20px}}
 @media(prefers-reduced-motion:reduce){.hero-pixel-spark{display:none!important;animation:none!important}}
+
+/* Light-theme navigation hover: use the light palette instead of the default dark hover. */
+body.light .nav button:hover{
+  background:#edf5fa;
+  color:#142033;
+  box-shadow:inset 2px 0 var(--cyan);
+}
+body.light .nav button.active,
+body.light .nav button.active:hover{
+  background:#e3f3f7;
+  color:#142033;
+  box-shadow:inset 2px 0 var(--cyan);
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Pixelpedia","url":"https://pixelpedia.capygod.workers.dev/","description":"A gaming discovery directory for games, gaming creators, peripherals, PC components, brands and gaming terminology."}</script></head>
 <body>
 <aside class="sidebar" id="sidebar"><div class="brand">Pixel<span>pedia</span></div><div class="brand-by">by <a href="https://www.youtube.com/@CapyGodYT" target="_blank" rel="noopener">CapyGodYT ↗</a></div><div class="side-label">DISCOVER</div><nav class="nav"><button class="active" data-view="home">⌂ &nbsp; Overview</button><button data-view="games">▣ &nbsp; Games</button><button data-view="gear">⌁ &nbsp; Gaming gear</button><button data-view="pcparts">▦ &nbsp; PC parts</button><button data-view="abbreviations">Aa &nbsp; Abbreviations</button><button data-view="brands">◇ &nbsp; Brands</button><button data-view="platforms">◈ &nbsp; Platforms & tools</button><button data-view="suggest" id="suggest-nav">✉ &nbsp; Suggest content</button><button data-view="saved">♡ &nbsp; Saved items</button><button data-view="news">▤ &nbsp; News</button><button data-view="irl-creators">◎ &nbsp; IRL creators</button><button data-view="admin" id="admin-nav" style="display:none">⚙ &nbsp; Admin dashboard</button></nav><div class="aside-note">✦ &nbsp; YOUR GAMING HUB<br><b>Discover more. Play your way.</b><br>Games, gear and tools in one place.</div></aside>
