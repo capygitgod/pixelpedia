@@ -561,6 +561,7 @@ body.light .aside-note b{color:#142033}
 .music-copy h3{margin:0;font-size:14px;line-height:1.25;overflow-wrap:anywhere}
 .music-copy p{margin:0;font-size:10px;line-height:1.45;color:var(--muted);overflow-wrap:anywhere}
 .music-copy .music-artist{color:var(--text);font-weight:700}
+.music-copy .music-platform{color:var(--muted);font-size:9px;letter-spacing:.2px}
 .music-open-link{display:inline-flex;margin-top:5px;color:var(--cyan);font-size:10px;font-weight:800;text-decoration:none}
 .music-open-link:hover{text-decoration:underline}
 .other-tabs{margin-bottom:14px}
@@ -820,7 +821,9 @@ function musicCardMarkup(row,game){
  const discovery=row.entry_kind==='discovery';
  const art=row.artwork_url||game?.image_url||generatedArtworkDataUri(row.track_title||'Game music',game?.name||'PIXELPEDIA MUSIC');
  const fallback=generatedArtworkDataUri(row.track_title||'Game music',game?.name||'PIXELPEDIA MUSIC');
- return '<article class="music-card"><div class="music-art"><img src="'+esc(art)+'" alt="'+esc((game?.name||'Game')+' music artwork')+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+esc(fallback)+'\'"></div><div class="music-copy"><span class="tag">'+(discovery?'SOUNDTRACK FINDER':'GAME SOUNDTRACK')+'</span><h3>'+esc(row.track_title)+'</h3><p class="music-artist">'+esc(row.artist||'')+'</p><p class="music-game-name">'+esc(game?.name||'Game')+(row.album?' · '+esc(row.album):'')+'</p>'+(row.description?'<p class="music-description">'+esc(row.description)+'</p>':'')+'<a class="music-open-link" href="'+esc(row.source_url)+'" target="_blank" rel="noopener noreferrer">'+(discovery?'Explore soundtrack ↗':'Open track ↗')+'</a></div></article>';
+ const sourceLabel=String(row.source_name||'').toLowerCase();
+ const actionLabel=discovery?'Explore soundtrack':sourceLabel.includes('search')?'Find track':String(row.platform||'').toLowerCase()==='osu!'?'Open beatmap':sourceLabel.includes('soundtrack')?'Open soundtrack':'Open track';
+ return '<article class="music-card"><div class="music-art"><img src="'+esc(art)+'" alt="'+esc((game?.name||'Game')+' music artwork')+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+esc(fallback)+'\'"></div><div class="music-copy"><span class="tag">'+(discovery?'SOUNDTRACK FINDER':'GAME SOUNDTRACK')+'</span><h3>'+esc(row.track_title)+'</h3><p class="music-artist">'+esc(row.artist||'')+'</p><p class="music-game-name">'+esc(game?.name||'Game')+(row.album?' · '+esc(row.album):'')+'</p>'+(row.platform?'<p class="music-platform">'+esc(row.platform)+'</p>':'')+(row.description?'<p class="music-description">'+esc(row.description)+'</p>':'')+'<a class="music-open-link" href="'+esc(row.source_url)+'" target="_blank" rel="noopener noreferrer">'+actionLabel+' ↗</a></div></article>';
 }
 function renderMusicRows(rows,term='',includeDiscovery=true){
  const q=String(term||'').trim().toLowerCase();
